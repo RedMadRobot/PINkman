@@ -15,11 +15,18 @@ if (libraryPropertiesFile.canRead()) {
     libraryProperties.load(new FileInputStream(libraryPropertiesFile))
 }
 
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 from components.release
+
+                artifact androidSourcesJar
 
                 groupId = publishProperties["group_id"]
                 artifactId = libraryProperties["lib_name"]
