@@ -1,0 +1,12 @@
+<resources>
+    <style name="DefaultKeyboard">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="buttonHeight">64dp</item>
+        <item name="buttonWidth">71dp</item>
+        <item name="buttonTextAppearance">@style/TextAppearance.AppCompat</item>
+        <item name="buttonHorizontalMargin">36dp</item>
+        <item name="buttonVerticalMargin">0dp</item>
+        <item name="buttonBackground">?selectableItemBackgroundBorderless</item>
+    </style>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PinKeyboard">
+        <attr name="buttonVerticalMargin" format="dimension" />
+        <attr name="buttonHorizontalMargin" format="dimension" />
+        <attr name="buttonHeight" format="dimension" />
+        <attr name="buttonWidth" format="dimension" />
+        <attr name="buttonBackground" format="reference" />
+        <attr name="buttonTextAppearance" format="reference" />
+        <attr name="buttonFont" format="reference" />
+    </declare-styleable>
+</resources>

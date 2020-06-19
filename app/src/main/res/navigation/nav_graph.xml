@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/createPinFragment"
+        android:name="com.redmadrobot.sample.create_pin.CreatePinFragment"
+        android:label="CreatePinFragment" />
+    <fragment
+        android:id="@+id/inputPinFragment"
+        android:name="com.redmadrobot.sample.input_pin.InputPinFragment"
+        android:label="InputPinFragment" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.redmadrobot.sample.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_createPinFragment"
+            app:destination="@id/createPinFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_inputPinFragment"
+            app:destination="@id/inputPinFragment" />
+    </fragment>
+</navigation>

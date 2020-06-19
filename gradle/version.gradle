@@ -1,0 +1,34 @@
+def getVersionCodeFromProperties() {
+    Properties versionProperties = loadVersionProperties()
+
+    def (major, minor, patch) = versionProperties["lib_version"].tokenize('.')
+
+    (major, minor, patch) = [major, minor, patch].collect { it.toInteger() }
+
+    return (major * 1000000) + (minor * 10000) + (patch * 100)
+}
+
+def getVersionNameFromProperties() {
+    Properties versionProperties = loadVersionProperties()
+    return versionProperties["lib_version"]
+}
+
+private Properties loadVersionProperties() {
+    Properties versionProperties = new Properties()
+    File propertiesFile = file('library.properties')
+
+    if (propertiesFile.exists()) {
+        //noinspection GroovyAssignabilityCheck
+        versionProperties.load(propertiesFile.newDataInputStream())
+    } else {
+        // Stub for CI
+        versionProperties["lib_version"] = "1.0"
+    }
+
+    versionProperties
+}
+
+ext {
+    getVersionCodeFromProperties = this.&getVersionCodeFromProperties
+    getVersionNameFromProperties = this.&getVersionNameFromProperties
+}

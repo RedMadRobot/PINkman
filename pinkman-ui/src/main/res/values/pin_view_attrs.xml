@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PinView">
+        <attr name="spaceBetween" format="dimension" />
+        <attr name="itemWidth" format="dimension" />
+        <attr name="itemHeight" format="dimension" />
+        <attr name="emptyDrawable" format="reference" />
+        <attr name="filledDrawable" format="reference" />
+        <attr name="length" format="integer" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,57 @@
+apply plugin: "maven-publish"
+apply plugin: "com.jfrog.bintray"
+
+def publishPropertiesFile = rootProject.file("gradle/publish.properties")
+def publishProperties = new Properties()
+
+if (publishPropertiesFile.canRead()) {
+    publishProperties.load(new FileInputStream(publishPropertiesFile))
+}
+
+def libraryPropertiesFile = file("library.properties")
+def libraryProperties = new Properties()
+
+if (libraryPropertiesFile.canRead()) {
+    libraryProperties.load(new FileInputStream(libraryPropertiesFile))
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = publishProperties["group_id"]
+                artifactId = libraryProperties["lib_name"]
+                version = getVersionNameFromProperties()
+            }
+        }
+    }
+}
+
+bintray {
+    user = System.getenv("BINTRAY_USER")
+    key = System.getenv("BINTRAY_KEY")
+    publications = ["release"]
+    override = true
+
+    pkg {
+        repo = publishProperties["repository"]
+        name = libraryProperties["lib_name"]
+        description = libraryProperties["lib_description"]
+        userOrg = publishProperties["organization_id"]
+        licenses = ["MIT"]
+        vcsUrl = libraryProperties["lib_vcs"]
+        issueTrackerUrl = libraryProperties["lib_issue_tracker"]
+        publish = true
+        publicDownloadNumbers = true
+
+        version {
+            name = getVersionNameFromProperties()
+            released = new Date()
+            vcsTag = getVersionNameFromProperties()
+        }
+
+        dryRun = false
+    }
+}

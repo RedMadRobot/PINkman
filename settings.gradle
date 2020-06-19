@@ -1,0 +1,4 @@
+include ':pinkman-ui'
+include ':pinkman'
+include ':app'
+rootProject.name = "PINkman"
