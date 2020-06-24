@@ -1,6 +1,9 @@
 ![](img/logo.png)
 
 # PINkman
+[![API](https://img.shields.io/badge/API-23%2B-red.svg?style=flat)](https://android-arsenal.com/api?level=23)
+[![Build Status](https://travis-ci.org/RedMadRobot/PINkman.svg?branch=master)](https://travis-ci.org/RedMadRobot/PINkman)
+
 
 Implementing an authentication by a PIN code is an ordinary task for a
 mobile applications developer. You can even think of it as some kind of
