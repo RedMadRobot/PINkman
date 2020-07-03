@@ -1,6 +1,7 @@
 package com.redmadrobot.pinkman
 
 import android.content.Context
+import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties.*
 import androidx.security.crypto.EncryptedFile
@@ -33,7 +34,12 @@ class Pinkman(
             .setBlockModes(BLOCK_MODE_GCM)
             .setEncryptionPaddings(ENCRYPTION_PADDING_NONE)
             .setKeySize(KEY_SIZE)
-            .build()
+            .apply {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    setUnlockedDeviceRequired(true)
+                    setIsStrongBoxBacked(true)
+                }
+            }.build()
 
 
     private val encryptedStorage by lazy {
@@ -74,7 +80,7 @@ class Pinkman(
     fun isValidPin(inputPin: String): Boolean {
         require(storageFile.exists()) { "PIN is not set. Please create PIN before validating." }
 
-        val storedKey  = loadKeyFromStorage()
+        val storedKey = loadKeyFromStorage()
 
         val inputKey = Pbkdf2Factory.createKey(
             inputPin.toCharArray(),
