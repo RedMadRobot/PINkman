@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  testing:
+    name: Code qualite and testing
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+      
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1.3.0
+        with:
+          java-version: 1.8
+          
+      - name: Run Android Linter
+        run: ./gradlew :pinkman:lint :pinkman-ui:lint
+      
+      - name: Android Emulator Runner
+        uses: ReactiveCircus/android-emulator-runner@v2.11.0
+        with:
+          api-level: 29
+          script: ./gradlew connectedCheck
+      
