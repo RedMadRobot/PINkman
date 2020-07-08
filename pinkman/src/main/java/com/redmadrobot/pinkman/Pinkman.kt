@@ -1,6 +1,7 @@
 package com.redmadrobot.pinkman
 
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties.*
@@ -37,7 +38,12 @@ class Pinkman(
             .apply {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     setUnlockedDeviceRequired(true)
-                    setIsStrongBoxBacked(true)
+
+                    val hasStrongBox = applicationContext
+                        .packageManager
+                        .hasSystemFeature(PackageManager.FEATURE_STRONGBOX_KEYSTORE)
+
+                    setIsStrongBoxBacked(hasStrongBox)
                 }
             }.build()
 

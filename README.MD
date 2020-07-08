@@ -54,7 +54,7 @@ yourself ;)
 Add this library to your gradle config
 
 ```groovy
-implementation 'com.redmadrobot:pinkman:1.0.1'
+implementation 'com.redmadrobot:pinkman:1.0.2'
 ```
 
 Create an instance of the `Pinkman` class (use a DI please) and
