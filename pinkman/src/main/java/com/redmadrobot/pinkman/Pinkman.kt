@@ -85,6 +85,7 @@ class Pinkman(
         return storageFile.delete()
     }
 
+    @Throws(BlacklistedPinException::class)
     fun changePin(oldPin: String, newPin: String) {
         require(storageFile.exists()) { "PIN is not set. Please create PIN before changing." }
         checkBlacklisted(newPin)
