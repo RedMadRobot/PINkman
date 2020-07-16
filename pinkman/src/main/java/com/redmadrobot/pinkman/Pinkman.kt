@@ -7,6 +7,7 @@ import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties.*
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
+import com.redmadrobot.pinkman.exception.BlacklistedPinException
 import com.redmadrobot.pinkman.internal.Pbkdf2Factory
 import com.redmadrobot.pinkman.internal.Pbkdf2Key
 import com.redmadrobot.pinkman.internal.Salt
@@ -17,9 +18,17 @@ import java.security.GeneralSecurityException
 
 class Pinkman(
     private val applicationContext: Context,
-    private val storageName: String = "pinkman"
+    private val storageName: String = "pinkman",
+    private val pinBlacklist: List<String>? = null
 ) {
     companion object {
+        val DEFAULT_BLACKLIST = listOf(
+            "1234", // Freq: 10.713%
+            "1111", // Freq: 6.016%
+            "0000", // Freq: 1.881%
+            "1212"  // Freq: 1.197%
+        )
+
         private const val KEYSET_ALIAS = "pinkman_keyset"
         private const val PREFERENCE_FILE = "pinkman_preferences"
         private const val KEYSTORE_ALIAS = "pinkman_key"
@@ -57,7 +66,10 @@ class Pinkman(
         ).setKeysetAlias(KEYSET_ALIAS).setKeysetPrefName(PREFERENCE_FILE).build()
     }
 
+    @Throws(BlacklistedPinException::class)
     fun createPin(newPin: String, force: Boolean = false) {
+        checkBlacklisted(newPin)
+
         if (force) {
             storageFile.delete()
         }
@@ -73,8 +85,10 @@ class Pinkman(
         return storageFile.delete()
     }
 
+    @Throws(BlacklistedPinException::class)
     fun changePin(oldPin: String, newPin: String) {
         require(storageFile.exists()) { "PIN is not set. Please create PIN before changing." }
+        checkBlacklisted(newPin)
 
         return if (isValidPin(oldPin)) {
             createPin(newPin, force = true)
@@ -113,6 +127,12 @@ class Pinkman(
 
         return ObjectInputStream(encryptedStorage.openFileInput()).use {
             it.readObject() as Pbkdf2Key
+        }
+    }
+
+    private inline fun checkBlacklisted(pin: String) {
+        if (pinBlacklist != null && pinBlacklist.contains(pin)) {
+            throw BlacklistedPinException()
         }
     }
 }
