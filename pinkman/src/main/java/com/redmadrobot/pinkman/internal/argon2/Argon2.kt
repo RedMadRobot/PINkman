@@ -1,7 +1,10 @@
 package com.redmadrobot.pinkman.internal.argon2
 
 import com.lambdapioneer.argon2kt.Argon2Kt
+import com.lambdapioneer.argon2kt.Argon2KtResult
 import com.lambdapioneer.argon2kt.Argon2Mode
+import com.redmadrobot.pinkman.internal.exception.BadHashException
+import java.nio.ByteBuffer
 import java.security.GeneralSecurityException
 
 
@@ -43,7 +46,7 @@ internal object Argon2 {
             "argon2i" -> Argon2Mode.ARGON2_I
             "argon2d" -> Argon2Mode.ARGON2_D
             "argon2id" -> Argon2Mode.ARGON2_ID
-            else -> throw GeneralSecurityException("Hash is corrupted")
+            else -> throw BadHashException()
         }
     }
 }
