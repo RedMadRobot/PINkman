@@ -1,10 +1,11 @@
-package com.redmadrobot.pinkman.internal
+package com.redmadrobot.pinkman.internal.pbkdf2
 
 import android.os.Build
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 
 
+@Deprecated("Use Argon2 instead")
 internal object Pbkdf2Factory {
     private const val DEFAULT_ITERATIONS = 10000
 
