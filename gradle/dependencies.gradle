@@ -23,7 +23,7 @@ def deps = [:]
 //region Gradle
 def gradle = [:]
 
-versions.android_plugin = "4.0.0"
+versions.android_plugin = '4.0.1'
 
 gradle.android_plugin = "com.android.tools.build:gradle:$versions.android_plugin"
 
@@ -60,6 +60,13 @@ androidx.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
 
 deps.androidx = androidx
 
+def hash = [:]
+
+versions.argon2 = "1.1.0"
+
+hash.argon2 = "com.lambdapioneer.argon2kt:argon2kt:$versions.argon2"
+
+deps.hash = hash
 //endregion
 
 //region Testing

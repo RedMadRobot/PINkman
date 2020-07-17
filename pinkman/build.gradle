@@ -47,7 +47,8 @@ android {
 dependencies {
     implementation(
             deps.kotlin.stdlib,
-            deps.jetpack.security
+            deps.jetpack.security,
+            deps.hash.argon2
     )
 
     testImplementation(
