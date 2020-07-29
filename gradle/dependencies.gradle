@@ -70,6 +70,14 @@ versions.argon2 = "1.1.0"
 hash.argon2 = "com.lambdapioneer.argon2kt:argon2kt:$versions.argon2"
 
 deps.hash = hash
+
+def rx = [:]
+
+versions.rx3 = "3.0.4"
+
+rx.rxjava3 = "io.reactivex.rxjava3:rxjava:$versions.rx3"
+
+deps.rx = rx
 //endregion
 
 //region Testing
