@@ -21,8 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="75dp"
-        app:emptyDrawable="@drawable/circle_grey"
-        app:filledDrawable="@drawable/circle_red"
+        app:emptyDrawable="@drawable/pinkman_circle_grey"
+        app:filledDrawable="@drawable/pinkman_circle_red"
         app:itemHeight="22dp"
         app:itemWidth="22dp"
         app:layout_constraintBottom_toTopOf="@+id/keyboard"
@@ -33,7 +33,7 @@
 
     <com.redmadrobot.pinkman_ui.PinKeyboard
         android:id="@+id/keyboard"
-        style="@style/DefaultKeyboard"
+        style="@style/PinkmanDefaultKeyboard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

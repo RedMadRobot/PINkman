@@ -120,7 +120,7 @@ implementation 'com.redmadrobot:pinkman-ui:1.0.0'
 
     <com.redmadrobot.pinkman_ui.PinKeyboard
         android:id="@+id/keyboard"
-        style="@style/DefaultKeyboard"
+        style="@style/PinkmanDefaultKeyboard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
