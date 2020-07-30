@@ -78,6 +78,14 @@ versions.rx3 = "3.0.4"
 rx.rxjava3 = "io.reactivex.rxjava3:rxjava:$versions.rx3"
 
 deps.rx = rx
+
+def utils = [:]
+
+versions.detekt = "1.10.0"
+
+utils.detekt_formatting = "io.gitlab.arturbosch.detekt:detekt-formatting:$versions.detekt"
+
+deps.utils = utils
 //endregion
 
 //region Testing
@@ -111,3 +119,4 @@ deps.bintray = bintray
 //endregio
 
 ext.deps = deps
+ext.detekt_version = versions.detekt

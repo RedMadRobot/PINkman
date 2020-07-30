@@ -1,0 +1,12 @@
+apply plugin: "io.gitlab.arturbosch.detekt"
+
+detekt {
+    config = rootProject.files("detekt/config.yml")
+    baseline = rootProject.file("detekt/detekt-baseline.xml")
+    autoCorrect = true
+    parallel = true
+}
+
+dependencies {
+    detektPlugins deps.utils.detekt_formatting
+}

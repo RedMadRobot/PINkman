@@ -24,7 +24,10 @@ jobs:
           
       - name: Run Android Linter
         run: ./gradlew :pinkman:lint :pinkman-ui:lint
-      
+
+      - name: Run Detekt
+        run: ./gradlew detekt
+
       - name: Android Emulator Runner
         uses: ReactiveCircus/android-emulator-runner@v2.11.0
         with:
