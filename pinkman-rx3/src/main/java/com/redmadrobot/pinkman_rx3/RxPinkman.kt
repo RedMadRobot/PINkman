@@ -7,7 +7,6 @@ import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-
 @Throws(BlacklistedPinException::class)
 fun Pinkman.createPinAsync(
     newPin: String,

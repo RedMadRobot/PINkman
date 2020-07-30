@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.redmadrobot.pinkman.Pinkman
 
-
 class InputPinViewModel @ViewModelInject constructor(private val pinkman: Pinkman) : ViewModel() {
 
     val pinIsValid = MutableLiveData<Boolean>()

@@ -145,4 +145,3 @@ class PinView @JvmOverloads constructor(
         require(filledDrawable != -1) { "PinView: filledDrawable should be set" }
     }
 }
-

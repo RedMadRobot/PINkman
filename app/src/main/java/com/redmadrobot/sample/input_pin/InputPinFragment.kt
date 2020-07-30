@@ -14,14 +14,14 @@ import com.redmadrobot.sample.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.create_pin_fragment.*
 
-
 @AndroidEntryPoint
 class InputPinFragment : Fragment() {
 
     private val viewModel: InputPinViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.input_pin_fragment, container, false)
@@ -30,14 +30,18 @@ class InputPinFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.pinIsValid.observe(viewLifecycleOwner, Observer { isValid ->
-            if (isValid) {
-                findNavController().popBackStack(R.id.mainFragment, false)
-            } else {
-                Toast.makeText(context, "Invalid PIN", Toast.LENGTH_SHORT).show()
-                Handler().postDelayed({ pin_view.empty() }, 500)
+        viewModel.pinIsValid.observe(
+            viewLifecycleOwner,
+            Observer { isValid ->
+                if (isValid) {
+                    findNavController().popBackStack(R.id.mainFragment, false)
+                } else {
+                    Toast.makeText(context, "Invalid PIN", Toast.LENGTH_SHORT).show()
+                    @Suppress("MagicNumber")
+                    Handler().postDelayed({ pin_view.empty() }, 500)
+                }
             }
-        })
+        )
 
         pin_view.onFilledListener = { viewModel.validatePin(it) }
         keyboard.keyboardClickListener = { pin_view.add(it) }

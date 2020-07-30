@@ -2,7 +2,6 @@ package com.redmadrobot.pinkman.internal
 
 import java.security.SecureRandom
 
-
 internal object Salt {
     fun generate(length: Int = 32): ByteArray {
         val random = SecureRandom()

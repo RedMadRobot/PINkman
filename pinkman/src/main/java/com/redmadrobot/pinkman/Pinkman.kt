@@ -5,8 +5,10 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties.*
+import android.util.Log
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
+import com.lambdapioneer.argon2kt.Argon2Exception
 import com.redmadrobot.pinkman.exception.BlacklistedPinException
 import com.redmadrobot.pinkman.internal.Salt
 import com.redmadrobot.pinkman.internal.argon2.Argon2
@@ -23,11 +25,13 @@ class Pinkman(
     private val pinBlacklist: List<String>? = null
 ) {
     companion object {
+        private const val TAG = "PINkman"
+
         val DEFAULT_BLACKLIST = listOf(
             "1234", // Freq: 10.713%
             "1111", // Freq: 6.016%
             "0000", // Freq: 1.881%
-            "1212"  // Freq: 1.197%
+            "1212" // Freq: 1.197%
         )
 
         private const val KEYSET_ALIAS = "pinkman_keyset"
@@ -103,7 +107,11 @@ class Pinkman(
             val storedHash = loadHashFromStorage()
             Argon2.verifyHash(storedHash, inputPin.toByteArray())
         } catch (e: BadHashException) {
+            Log.d(TAG, e.localizedMessage, e)
             fallbackValidationWithMigration(inputPin)
+        } catch (e: Argon2Exception) {
+            Log.e(TAG, e.localizedMessage, e)
+            false
         }
     }
 
@@ -119,7 +127,7 @@ class Pinkman(
 
     private fun loadHashFromStorage() = encryptedStorage.openFileInput().use { it.readBytes() }
 
-    //TODO: Need to delete this method in the next major release
+    // TODO: Need to delete this method in the next major release
     private fun fallbackValidationWithMigration(inputPin: String): Boolean {
         val pbkdf2Key = ObjectInputStream(encryptedStorage.openFileInput()).use {
             it.readObject() as Pbkdf2Key

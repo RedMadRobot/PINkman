@@ -1,16 +1,12 @@
 package com.redmadrobot.pinkman.internal.argon2
 
 import com.lambdapioneer.argon2kt.Argon2Kt
-import com.lambdapioneer.argon2kt.Argon2KtResult
 import com.lambdapioneer.argon2kt.Argon2Mode
 import com.redmadrobot.pinkman.internal.exception.BadHashException
-import java.nio.ByteBuffer
-import java.security.GeneralSecurityException
-
 
 internal object Argon2 {
     private const val DEFAULT_ITERATIONS = 5
-    private const val DEFAULT_MEMORY_KB = 65536
+    private const val DEFAULT_MEMORY_KB = 65_536
 
     private val DEFAULT_MODE = Argon2Mode.ARGON2_I
 
@@ -46,7 +42,7 @@ internal object Argon2 {
             "argon2i" -> Argon2Mode.ARGON2_I
             "argon2d" -> Argon2Mode.ARGON2_D
             "argon2id" -> Argon2Mode.ARGON2_ID
-            else -> throw BadHashException()
+            else -> throw BadHashException("Hash doesn't match Argon2 type")
         }
     }
 }

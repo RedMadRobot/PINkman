@@ -12,14 +12,14 @@ import com.redmadrobot.sample.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.create_pin_fragment.*
 
-
 @AndroidEntryPoint
 class CreatePinFragment : Fragment() {
 
     private val viewModel: CreatePinViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.create_pin_fragment, container, false)
@@ -28,9 +28,12 @@ class CreatePinFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.pinIsCreated.observe(viewLifecycleOwner, Observer { isCreated ->
-            findNavController().popBackStack(R.id.mainFragment, false)
-        })
+        viewModel.pinIsCreated.observe(
+            viewLifecycleOwner,
+            Observer { isCreated ->
+                findNavController().popBackStack(R.id.mainFragment, false)
+            }
+        )
 
         pin_view.onFilledListener = { viewModel.createPin(it) }
         keyboard.keyboardClickListener = { pin_view.add(it) }

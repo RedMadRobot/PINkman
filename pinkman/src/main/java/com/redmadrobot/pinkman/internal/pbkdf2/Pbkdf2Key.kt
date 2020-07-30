@@ -2,7 +2,6 @@ package com.redmadrobot.pinkman.internal.pbkdf2
 
 import java.io.Serializable
 
-
 @Deprecated("Use Argon2 instead")
 internal data class Pbkdf2Key(
     val algorithm: String,

@@ -53,10 +53,13 @@ class PinKeyboard @JvmOverloads constructor(
             with(attrsArray) {
                 buttonWidth = getDimensionPixelSize(R.styleable.PinKeyboard_buttonWidth, -1)
                 buttonHeight = getDimensionPixelSize(R.styleable.PinKeyboard_buttonHeight, -1)
-                buttonHorizontalMargin = getDimensionPixelSize(R.styleable.PinKeyboard_buttonHorizontalMargin, 0)
-                buttonVerticalMargin = getDimensionPixelSize(R.styleable.PinKeyboard_buttonVerticalMargin, 0)
+                buttonHorizontalMargin =
+                    getDimensionPixelSize(R.styleable.PinKeyboard_buttonHorizontalMargin, 0)
+                buttonVerticalMargin =
+                    getDimensionPixelSize(R.styleable.PinKeyboard_buttonVerticalMargin, 0)
                 buttonBackground = getResourceId(R.styleable.PinKeyboard_buttonBackground, -1)
-                buttonTextAppearance = getResourceId(R.styleable.PinKeyboard_buttonTextAppearance, -1)
+                buttonTextAppearance =
+                    getResourceId(R.styleable.PinKeyboard_buttonTextAppearance, -1)
                 buttonFontId = getResourceId(R.styleable.PinKeyboard_buttonFont, -1)
             }
         } finally {
@@ -75,25 +78,41 @@ class PinKeyboard @JvmOverloads constructor(
     fun setLeftCustomButton(label: String, textAppearance: Int, action: () -> Unit) {
         val leftCustomButton = createButton(label, textAppearance, action)
         leftCustomButtonContainer.removeAllViews()
-        leftCustomButtonContainer.addView(leftCustomButton, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        leftCustomButtonContainer.addView(
+            leftCustomButton,
+            LayoutParams.MATCH_PARENT,
+            LayoutParams.MATCH_PARENT
+        )
     }
 
     fun setRightCustomButton(label: String, textAppearance: Int? = null, action: () -> Unit) {
         val leftCustomButton = createButton(label, textAppearance, action)
         rightCustomButtonContainer.removeAllViews()
-        rightCustomButtonContainer.addView(leftCustomButton, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        rightCustomButtonContainer.addView(
+            leftCustomButton,
+            LayoutParams.MATCH_PARENT,
+            LayoutParams.MATCH_PARENT
+        )
     }
 
     fun setLeftCustomButton(@DrawableRes drawable: Int, action: () -> Unit) {
         val leftCustomButton = createButton(drawable, action)
         leftCustomButtonContainer.removeAllViews()
-        leftCustomButtonContainer.addView(leftCustomButton, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        leftCustomButtonContainer.addView(
+            leftCustomButton,
+            LayoutParams.MATCH_PARENT,
+            LayoutParams.MATCH_PARENT
+        )
     }
 
     fun setRightCustomButton(@DrawableRes drawable: Int, action: () -> Unit) {
         val leftCustomButton = createButton(drawable, action)
         rightCustomButtonContainer.removeAllViews()
-        rightCustomButtonContainer.addView(leftCustomButton, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        rightCustomButtonContainer.addView(
+            leftCustomButton,
+            LayoutParams.MATCH_PARENT,
+            LayoutParams.MATCH_PARENT
+        )
     }
 
     fun removeRightCustomButton() {
@@ -146,8 +165,7 @@ class PinKeyboard @JvmOverloads constructor(
             when {
                 textAppearance != null -> setTextAppearance(this, textAppearance)
                 buttonTextAppearance != -1 -> setTextAppearance(this, buttonTextAppearance)
-
-                else -> throw IllegalStateException("You have to set textAppearance via XML or programmatically!")
+                else -> error("You have to set textAppearance via XML or programmatically!")
             }
 
             if (buttonFontId != -1) {
@@ -186,4 +204,3 @@ class PinKeyboard @JvmOverloads constructor(
         require(height != -1) { "PinKeyboard: buttonHeight should be set" }
     }
 }
-

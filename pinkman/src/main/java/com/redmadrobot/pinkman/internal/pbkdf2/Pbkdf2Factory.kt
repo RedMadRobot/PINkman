@@ -4,10 +4,9 @@ import android.os.Build
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 
-
 @Deprecated("Use Argon2 instead")
 internal object Pbkdf2Factory {
-    private const val DEFAULT_ITERATIONS = 10000
+    private const val DEFAULT_ITERATIONS = 10_000
 
     private val systemAlgorithm by lazy {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
@@ -23,6 +22,7 @@ internal object Pbkdf2Factory {
         algorithm: String = systemAlgorithm,
         iterations: Int = DEFAULT_ITERATIONS
     ): Pbkdf2Key {
+        @Suppress("MagicNumber")
         val keySpec = PBEKeySpec(passphraseOrPin, salt, iterations, 256)
         val secretKey = SecretKeyFactory.getInstance(algorithm).generateSecret(keySpec)
 
