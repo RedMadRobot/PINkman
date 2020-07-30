@@ -36,22 +36,22 @@ class RxPinkmanTest {
             .andThen(Single.fromCallable { File(applicationContext.filesDir, "pinkman").exists() })
             .test()
             .assertValue(true)
-}
+    }
 
-@Test
-fun changePin() {
-    pinkman.createPinAsync("0000", scheduler = testScheduler)
-        .andThen(pinkman.changePinAsync("0000", "1111", scheduler = testScheduler))
-        .andThen(pinkman.isValidPinAsync("1111", scheduler = testScheduler))
-        .test()
-        .assertValue(true)
-}
+    @Test
+    fun changePin() {
+        pinkman.createPinAsync("0000", scheduler = testScheduler)
+            .andThen(pinkman.changePinAsync("0000", "1111", scheduler = testScheduler))
+            .andThen(pinkman.isValidPinAsync("1111", scheduler = testScheduler))
+            .test()
+            .assertValue(true)
+    }
 
-@Test
-fun isValidPin() {
-    pinkman.createPinAsync("0000", scheduler = testScheduler)
-        .andThen(pinkman.isValidPinAsync("0000", scheduler = testScheduler))
-        .test()
-        .assertValue(true)
-}
+    @Test
+    fun isValidPin() {
+        pinkman.createPinAsync("0000", scheduler = testScheduler)
+            .andThen(pinkman.isValidPinAsync("0000", scheduler = testScheduler))
+            .test()
+            .assertValue(true)
+    }
 }
