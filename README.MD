@@ -15,9 +15,10 @@ manner. Don't worry, Pinkman to the rescue!
 
 PINkman is a library to help implementing an authentication by a PIN
 code in a secure manner. The library derives hash from the user's PIN
-using PBKDF2 function and stores it in an encrypted file. The file is
-encrypted with the AES-256 algorithm in the GCM mode and keys are stored
-in the AndroidKeystore.
+using [Argon2](https://github.com/P-H-C/phc-winner-argon2) hash function  
+and stores it in an encrypted file. The file is encrypted with the
+AES-256 algorithm in the GCM mode and keys are stored in the
+AndroidKeystore.
 
 ## How it works?
 
@@ -27,15 +28,13 @@ and their params.
 
 ##### Deriving a hash from a PIN code
 
-For getting the hash, the standard PBKDF2 function from the
-`javax.crypto` package is used. Following params are defaults and some
-of them can be changed:
+For getting the hash, the Argon2 function is used with following params:
 
-- **PRF**: HMAC-SHA1 on "before Oreo" devices and HMAC-SHA256 the newer
-  ones
-- **Salt**: 256bit
-- **Iterations**: 10000
-- **Derived key length**: 256bit
+- **Mode**: Argon2i
+- **Time cost in iterations**: 5
+- **Memory cost in KBytes**: 65 536
+- **Parallelism**: 2
+- **Derived hash length**: 128bit
 
 ##### Encrypted files
 
@@ -54,7 +53,7 @@ yourself ;)
 Add this library to your gradle config
 
 ```groovy
-implementation 'com.redmadrobot:pinkman:1.0.2'
+implementation 'com.redmadrobot:pinkman:$pinkman_version'
 ```
 
 Create an instance of the `Pinkman` class (use a DI please) and
@@ -93,7 +92,7 @@ Also you can do all these things even sipmler with the UI components
 this dependency to use them
 
 ```groovy
-implementation 'com.redmadrobot:pinkman-ui:1.0.0' 
+implementation 'com.redmadrobot:pinkman-ui:$pinkman_version' 
 ```
 
 ```xml
@@ -150,6 +149,45 @@ class CreatePinFragment : Fragment() {
 
     }
 }
+```
+
+⚠️  
+Hash deriving operations can take significant time on some devices. In
+order to avoid ANR in your application you shouldn't run methods
+`createPin()`, `changePin()`, `isValidPin()` on the main thread.
+
+This library has already provided two extensions to run these methods
+asynchronously. You can choose one depending on your specific needs (or
+tech stack).
+
+You need to add this dependency if you prefer RxJava:
+
+```groovy
+implementation 'com.redmadrobot:pinkman-rx3:$pinkman_version'
+```
+
+But if you're on the bleeding edge technologies, you should use a
+dependency with
+[Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
+support:
+
+```groovy
+implementation 'com.redmadrobot:pinkman-coroutines:$pinkman_version'
+```
+
+As a result, you'll get RxJava specific or Coroutines specific method's
+set:
+
+```kotlin
+// RxJava3
+fun createPinAsync(...): Completable
+fun changePinAsync(...): Completable
+fun isValidPinAsync(...): Single<Boolean>
+
+// Coroutines
+suspend fun createPinAsync(...)
+suspend fun changePinAsync(...)
+suspend fun isValidPinAsync(...): Boolean
 ```
 
 ## Feedback
