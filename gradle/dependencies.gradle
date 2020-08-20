@@ -33,8 +33,8 @@ deps.gradle = gradle
 //region Kotlin
 def kotlin = [:]
 
-versions.kotlin = "1.3.72"
-versions.kotlin_coroutines = "1.3.8"
+versions.kotlin = "1.4.0"
+versions.kotlin_coroutines = "1.3.9"
 
 kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
@@ -73,7 +73,7 @@ deps.hash = hash
 
 def rx = [:]
 
-versions.rx3 = "3.0.4"
+versions.rx3 = "3.0.6"
 
 rx.rxjava3 = "io.reactivex.rxjava3:rxjava:$versions.rx3"
 
@@ -81,7 +81,8 @@ deps.rx = rx
 
 def utils = [:]
 
-versions.detekt = "1.10.0"
+versions.detekt = "1.11.2"
+versions.dependency_updates = "0.29.0"
 
 utils.detekt_formatting = "io.gitlab.arturbosch.detekt:detekt-formatting:$versions.detekt"
 
@@ -91,14 +92,14 @@ deps.utils = utils
 //region Testing
 def test = [:]
 
-versions.junit = "4.12"
-versions.assertj = "3.10.0"
-versions.mockito_core = "1.10.19"
-versions.mockito_kotlin = "2.0.0"
-versions.androidx_test = "1.1.0"
+versions.junit = "4.13"
+versions.assertj = "3.16.1"
+versions.mockito_core = "3.5.2"
+versions.mockito_kotlin = "2.1.0"
+versions.androidx_test = "1.3.0-rc03"
 
 test.junit = "junit:junit:$versions.junit"
-test.mockito_core = "org.mockito:mockito-core:$versions.mockito_kotlin"
+test.mockito_core = "org.mockito:mockito-core:$versions.mockito_core"
 test.mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
 test.assertj = "org.assertj:assertj-core:$versions.assertj"
 
@@ -120,3 +121,4 @@ deps.bintray = bintray
 
 ext.deps = deps
 ext.detekt_version = versions.detekt
+ext.dependency_updates = versions.dependency_updates
