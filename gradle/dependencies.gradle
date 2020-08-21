@@ -81,8 +81,9 @@ deps.rx = rx
 
 def utils = [:]
 
-versions.detekt = "1.11.2"
+versions.detekt = "1.12.0-RC1"
 versions.dependency_updates = "0.29.0"
+versions.dependency_check = "5.3.2.1"
 
 utils.detekt_formatting = "io.gitlab.arturbosch.detekt:detekt-formatting:$versions.detekt"
 
@@ -122,3 +123,4 @@ deps.bintray = bintray
 ext.deps = deps
 ext.detekt_version = versions.detekt
 ext.dependency_updates = versions.dependency_updates
+ext.dependency_check = versions.dependency_check
