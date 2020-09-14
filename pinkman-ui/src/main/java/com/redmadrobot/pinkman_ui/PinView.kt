@@ -114,7 +114,7 @@ class PinView @JvmOverloads constructor(
 
     private fun createItem(itemPosition: Int): View {
         val item = View(context)
-        val layoutParams = LinearLayout.LayoutParams(itemWidth, itemHeight)
+        val layoutParams = LayoutParams(itemWidth, itemHeight)
 
         if (itemPosition < length - 1) {
             layoutParams.marginEnd = spaceBetween

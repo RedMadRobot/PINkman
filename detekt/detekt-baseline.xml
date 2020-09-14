@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <Blacklist timestamp="1562329762563"></Blacklist>
-  <Whitelist timestamp="1573503999209"></Whitelist>
+    <Blacklist timestamp="1562329762563" />
+    <Whitelist timestamp="1573503999209" />
 </SmellBaseline>

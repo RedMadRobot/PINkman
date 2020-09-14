@@ -30,7 +30,7 @@ afterEvaluate {
 
                 groupId = publishProperties["group_id"]
                 artifactId = libraryProperties["lib_name"]
-                version = getVersionNameFromProperties()
+                version = publishProperties["lib_version"]
             }
         }
     }
@@ -54,9 +54,9 @@ bintray {
         publicDownloadNumbers = true
 
         version {
-            name = getVersionNameFromProperties()
+            name = publishProperties["lib_version"]
             released = new Date()
-            vcsTag = getVersionNameFromProperties()
+            vcsTag = publishProperties["lib_version"]
         }
 
         dryRun = false

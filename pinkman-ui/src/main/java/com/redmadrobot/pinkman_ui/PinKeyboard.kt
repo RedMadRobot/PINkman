@@ -187,7 +187,7 @@ class PinKeyboard @JvmOverloads constructor(
     }
 
     private fun getButtonLayoutParams(column: Int, row: Int): LayoutParams {
-        return GridLayout.LayoutParams().apply {
+        return LayoutParams().apply {
             if (column < COLUMN_COUNT - 1) marginEnd = buttonHorizontalMargin
             if (row < ROW_COUNT - 1) bottomMargin = buttonVerticalMargin
             width = buttonWidth
