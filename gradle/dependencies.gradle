@@ -49,7 +49,7 @@ deps.kotlin = kotlin
 
 def jetpack = [:]
 
-versions.security = "1.0.0-rc02"
+versions.security = "1.0.0-rc03"
 
 jetpack.security = "androidx.security:security-crypto:$versions.security"
 
