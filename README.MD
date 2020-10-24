@@ -1,4 +1,4 @@
-![](img/logo.png)
+![](img/logo.svg)
 
 # PINkman
 [![API](https://img.shields.io/badge/API-23%2B-red.svg?style=flat)](https://android-arsenal.com/api?level=23)
