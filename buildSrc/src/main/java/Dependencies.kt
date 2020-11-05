@@ -9,7 +9,7 @@ object Dependencies {
 
     object Lib {
         private object Versions {
-            const val securityCrypto = "1.0.0-rc02"
+            const val securityCrypto = "1.0.0-rc03"
             const val argon2 = "1.1.0"
             const val coroutines = "1.3.9"
             const val rxJava3 = "3.0.6"
