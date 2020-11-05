@@ -9,10 +9,6 @@ internal data class Pbkdf2Key(
     val salt: ByteArray,
     val hash: ByteArray
 ) : Serializable {
-    companion object {
-        private const val serialVersionUID = -90000099L
-    }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -33,5 +29,9 @@ internal data class Pbkdf2Key(
         result = 31 * result + salt.contentHashCode()
         result = 31 * result + hash.contentHashCode()
         return result
+    }
+
+    companion object {
+        private const val serialVersionUID = -90000099L
     }
 }

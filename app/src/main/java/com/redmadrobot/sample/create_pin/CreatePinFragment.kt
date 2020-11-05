@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.redmadrobot.sample.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,15 +27,11 @@ class CreatePinFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.pinIsCreated.observe(
-            viewLifecycleOwner,
-            Observer { isCreated ->
-                findNavController().popBackStack(R.id.mainFragment, false)
-            }
-        )
+        viewModel.pinIsCreated.observe(viewLifecycleOwner) {
+            findNavController().popBackStack(R.id.mainFragment, false)
+        }
 
         pin_view.onFilledListener = { viewModel.createPin(it) }
         keyboard.keyboardClickListener = { pin_view.add(it) }
-
     }
 }
