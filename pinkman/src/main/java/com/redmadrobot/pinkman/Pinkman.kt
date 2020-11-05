@@ -24,22 +24,6 @@ class Pinkman(
     private val storageName: String = "pinkman",
     private val pinBlacklist: List<String>? = null
 ) {
-    companion object {
-        private const val TAG = "PINkman"
-
-        val DEFAULT_BLACKLIST = listOf(
-            "1234", // Freq: 10.713%
-            "1111", // Freq: 6.016%
-            "0000", // Freq: 1.881%
-            "1212" // Freq: 1.197%
-        )
-
-        private const val KEYSET_ALIAS = "pinkman_keyset"
-        private const val PREFERENCE_FILE = "pinkman_preferences"
-        private const val KEYSTORE_ALIAS = "pinkman_key"
-        private const val KEY_SIZE = 256
-    }
-
     private val storageFile by lazy {
         File(applicationContext.filesDir, storageName)
     }
@@ -153,5 +137,21 @@ class Pinkman(
         if (pinBlacklist != null && pinBlacklist.contains(pin)) {
             throw BlacklistedPinException()
         }
+    }
+
+    companion object {
+        private const val TAG = "PINkman"
+
+        val DEFAULT_BLACKLIST = listOf(
+            "1234", // Freq: 10.713%
+            "1111", // Freq: 6.016%
+            "0000", // Freq: 1.881%
+            "1212" // Freq: 1.197%
+        )
+
+        private const val KEYSET_ALIAS = "pinkman_keyset"
+        private const val PREFERENCE_FILE = "pinkman_preferences"
+        private const val KEYSTORE_ALIAS = "pinkman_key"
+        private const val KEY_SIZE = 256
     }
 }

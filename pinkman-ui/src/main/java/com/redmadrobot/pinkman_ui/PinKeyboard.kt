@@ -21,12 +21,6 @@ class PinKeyboard @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : GridLayout(context, attrs, defStyleAttr) {
-
-    companion object {
-        private const val COLUMN_COUNT = 3
-        private const val ROW_COUNT = 4
-    }
-
     private var buttonVerticalMargin = 0
     private var buttonHorizontalMargin = 0
     private var buttonWidth = -1
@@ -202,5 +196,10 @@ class PinKeyboard @JvmOverloads constructor(
     private fun validateAttrs() {
         require(width != -1) { "PinKeyboard: buttonWidth should be set" }
         require(height != -1) { "PinKeyboard: buttonHeight should be set" }
+    }
+
+    companion object {
+        private const val COLUMN_COUNT = 3
+        private const val ROW_COUNT = 4
     }
 }

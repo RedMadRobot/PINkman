@@ -31,9 +31,7 @@ class CreatePinFragment : Fragment() {
             findNavController().popBackStack(R.id.mainFragment, false)
         }
 
-
         pin_view.onFilledListener = { viewModel.createPin(it) }
         keyboard.keyboardClickListener = { pin_view.add(it) }
-
     }
 }
