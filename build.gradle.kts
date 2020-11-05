@@ -40,7 +40,7 @@ subprojects {
     }
 
     detekt {
-        config = rootProject.files("detekt/detekt.yml")
+        config = rootProject.files("detekt/config.yml")
         baseline = rootProject.file("detekt/detekt-baseline.xml")
 
         failFast = true
