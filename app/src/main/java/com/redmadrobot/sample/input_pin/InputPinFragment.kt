@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.redmadrobot.pinkman_ui.KeyClickListener
 import com.redmadrobot.sample.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.create_pin_fragment.*
@@ -41,6 +42,6 @@ class InputPinFragment : Fragment() {
         }
 
         pin_view.onFilledListener = { viewModel.validatePin(it) }
-        keyboard.keyboardClickListener = { pin_view.add(it) }
+        keyboard.keyClickListener = KeyClickListener { pin_view.add(it) }
     }
 }
