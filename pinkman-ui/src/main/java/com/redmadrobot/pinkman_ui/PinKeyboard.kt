@@ -14,6 +14,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
 import androidx.annotation.StyleRes
 import androidx.core.content.res.ResourcesCompat
+import kotlin.properties.Delegates
 
 @SuppressWarnings("MagicNumber")
 class PinKeyboard @JvmOverloads constructor(
@@ -38,7 +39,14 @@ class PinKeyboard @JvmOverloads constructor(
     private lateinit var leftCustomButtonContainer: FrameLayout
     private lateinit var rightCustomButtonContainer: FrameLayout
 
-    var keyboardClickListener: (Char) -> Unit = {}
+    @Deprecated("Use keyClickListener instead", ReplaceWith("keyClickListener = KeyClickListener { ... }"))
+    var keyboardClickListener: (Char) -> Unit
+        get() = { keyClickListener.onClick(it) }
+        set(value) {
+            keyClickListener = KeyClickListener { value(it) }
+        }
+
+    var keyClickListener by Delegates.notNull<KeyClickListener>()
 
     init {
         lateinit var attrsArray: TypedArray
@@ -145,7 +153,7 @@ class PinKeyboard @JvmOverloads constructor(
     }
 
     private fun addSimpleButton(label: String, value: Char, column: Int, row: Int) {
-        val button = createButton(label) { keyboardClickListener(value) }
+        val button = createButton(label) { keyClickListener.onClick(value) }
         addView(button, getButtonLayoutParams(column, row))
     }
 
