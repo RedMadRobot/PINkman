@@ -14,7 +14,7 @@ on:
 
 jobs:
   testing:
-    name: Code qualite and testing
+    name: Code quality and testing
     runs-on: macos-latest
     
     steps:
