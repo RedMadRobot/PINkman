@@ -9,10 +9,10 @@ object Dependencies {
 
     object Lib {
         private object Versions {
-            const val securityCrypto = "1.0.0-rc03"
-            const val argon2 = "1.1.0"
-            const val coroutines = "1.3.9"
-            const val rxJava3 = "3.0.6"
+            const val securityCrypto = "1.0.0-rc04"
+            const val argon2 = "1.2.0"
+            const val coroutines = "1.4.2"
+            const val rxJava3 = "3.0.9"
         }
 
         const val securityCrypto = "androidx.security:security-crypto:${Versions.securityCrypto}"
@@ -23,7 +23,7 @@ object Dependencies {
 
     object App {
         private object Versions {
-            const val daggerVersion = "2.29-alpha"
+            const val daggerVersion = "2.30.1-alpha"
             const val hiltLifecycleViewmodel = "1.0.0-alpha01"
 
             const val navigationFragmentKtx = "2.3.0-rc01"
@@ -36,7 +36,7 @@ object Dependencies {
             const val constraintlayout = "1.1.3"
 
             const val hiltCompiler = "1.0.0-alpha01"
-            const val hiltAndroidCompiler = "2.28.3-alpha"
+            const val hiltAndroidCompiler = "2.30.1-alpha"
         }
 
         const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.daggerVersion}"

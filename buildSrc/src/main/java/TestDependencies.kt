@@ -3,12 +3,12 @@ object TestDependencies {
         const val junit = "4.13"
         const val junitExt = "1.1.2"
         const val espresso = "3.3.0"
-        const val assertjCore = "3.16.1"
-        const val mockitoCore = "3.5.2"
+        const val assertjCore = "3.18.1"
+        const val mockitoCore = "3.6.28"
         const val mockitoKotlin = "2.1.0"
         const val testRunner = "1.3.0-rc03"
         const val testRules = "1.3.0-rc03"
-        const val coroutinesTest = "1.3.9"
+        const val coroutinesTest = "1.4.2"
     }
 
     const val junit = "junit:junit:${Versions.junit}"
