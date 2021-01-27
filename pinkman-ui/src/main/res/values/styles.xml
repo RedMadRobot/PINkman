@@ -7,6 +7,6 @@
         <item name="buttonTextAppearance">@style/TextAppearance.AppCompat</item>
         <item name="buttonHorizontalMargin">36dp</item>
         <item name="buttonVerticalMargin">0dp</item>
-        <item name="buttonBackground">?selectableItemBackgroundBorderless</item>
+        <item name="digitButtonBackground">?selectableItemBackgroundBorderless</item>
     </style>
 </resources>

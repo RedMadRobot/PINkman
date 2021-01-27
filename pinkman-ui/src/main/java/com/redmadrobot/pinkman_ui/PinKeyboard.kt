@@ -28,7 +28,13 @@ class PinKeyboard @JvmOverloads constructor(
     private var buttonHeight = -1
 
     @DrawableRes
-    private var buttonBackground = -1
+    private var digitButtonBackground = -1
+
+    @DrawableRes
+    private var leftCustomButtonBackground = -1
+
+    @DrawableRes
+    private var rightCustomButtonBackground = -1
 
     @StyleRes
     private var buttonTextAppearance = -1
@@ -59,7 +65,9 @@ class PinKeyboard @JvmOverloads constructor(
                     getDimensionPixelSize(R.styleable.PinKeyboard_buttonHorizontalMargin, 0)
                 buttonVerticalMargin =
                     getDimensionPixelSize(R.styleable.PinKeyboard_buttonVerticalMargin, 0)
-                buttonBackground = getResourceId(R.styleable.PinKeyboard_buttonBackground, -1)
+                digitButtonBackground = getResourceId(R.styleable.PinKeyboard_digitButtonBackground, -1)
+                leftCustomButtonBackground = getResourceId(R.styleable.PinKeyboard_leftCustomButtonBackground, -1)
+                rightCustomButtonBackground = getResourceId(R.styleable.PinKeyboard_rightCustomButtonBackground, -1)
                 buttonTextAppearance =
                     getResourceId(R.styleable.PinKeyboard_buttonTextAppearance, -1)
                 buttonFontId = getResourceId(R.styleable.PinKeyboard_buttonFont, -1)
@@ -78,7 +86,7 @@ class PinKeyboard @JvmOverloads constructor(
     }
 
     fun setLeftCustomButton(label: String, textAppearance: Int, action: () -> Unit) {
-        val leftCustomButton = createButton(label, textAppearance, action)
+        val leftCustomButton = createButton(label, leftCustomButtonBackground, textAppearance, action)
         leftCustomButtonContainer.removeAllViews()
         leftCustomButtonContainer.addView(
             leftCustomButton,
@@ -88,17 +96,17 @@ class PinKeyboard @JvmOverloads constructor(
     }
 
     fun setRightCustomButton(label: String, textAppearance: Int? = null, action: () -> Unit) {
-        val leftCustomButton = createButton(label, textAppearance, action)
+        val rightCustomButton = createButton(label, textAppearance, rightCustomButtonBackground, action)
         rightCustomButtonContainer.removeAllViews()
         rightCustomButtonContainer.addView(
-            leftCustomButton,
+            rightCustomButton,
             LayoutParams.MATCH_PARENT,
             LayoutParams.MATCH_PARENT
         )
     }
 
     fun setLeftCustomButton(@DrawableRes drawable: Int, action: () -> Unit) {
-        val leftCustomButton = createButton(drawable, action)
+        val leftCustomButton = createButton(drawable, leftCustomButtonBackground, action)
         leftCustomButtonContainer.removeAllViews()
         leftCustomButtonContainer.addView(
             leftCustomButton,
@@ -108,10 +116,10 @@ class PinKeyboard @JvmOverloads constructor(
     }
 
     fun setRightCustomButton(@DrawableRes drawable: Int, action: () -> Unit) {
-        val leftCustomButton = createButton(drawable, action)
+        val rightCustomButton = createButton(drawable, rightCustomButtonBackground, action)
         rightCustomButtonContainer.removeAllViews()
         rightCustomButtonContainer.addView(
-            leftCustomButton,
+            rightCustomButton,
             LayoutParams.MATCH_PARENT,
             LayoutParams.MATCH_PARENT
         )
@@ -153,11 +161,20 @@ class PinKeyboard @JvmOverloads constructor(
     }
 
     private fun addSimpleButton(label: String, value: Char, column: Int, row: Int) {
-        val button = createButton(label) { keyClickListener.onClick(value) }
+        val button = createButton(
+            label = label,
+            buttonBackground = digitButtonBackground,
+            action = { keyClickListener.onClick(value) }
+        )
         addView(button, getButtonLayoutParams(column, row))
     }
 
-    private fun createButton(label: String, textAppearance: Int? = null, action: () -> Unit): View {
+    private fun createButton(
+        label: String,
+        textAppearance: Int? = null,
+        @DrawableRes buttonBackground: Int,
+        action: () -> Unit
+    ): View {
         return TextView(context).apply {
             text = label
             gravity = Gravity.CENTER
@@ -179,7 +196,7 @@ class PinKeyboard @JvmOverloads constructor(
         }
     }
 
-    private fun createButton(@DrawableRes drawable: Int, action: () -> Unit): View {
+    private fun createButton(@DrawableRes drawable: Int, @DrawableRes buttonBackground: Int, action: () -> Unit): View {
         return ImageView(context).apply {
             scaleType = ImageView.ScaleType.CENTER
             setImageResource(drawable)
