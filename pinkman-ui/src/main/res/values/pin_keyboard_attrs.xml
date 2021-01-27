@@ -5,7 +5,9 @@
         <attr name="buttonHorizontalMargin" format="dimension" />
         <attr name="buttonHeight" format="dimension" />
         <attr name="buttonWidth" format="dimension" />
-        <attr name="buttonBackground" format="reference" />
+        <attr name="digitButtonBackground" format="reference" />
+        <attr name="leftCustomButtonBackground" format="reference" />
+        <attr name="rightCustomButtonBackground" format="reference" />
         <attr name="buttonTextAppearance" format="reference" />
         <attr name="buttonFont" format="reference" />
     </declare-styleable>
