@@ -33,7 +33,7 @@ jobs:
         run: ./gradlew detekt
 
       - name: Android Emulator Runner
-        uses: ReactiveCircus/android-emulator-runner@v2.13.0
+        uses: ReactiveCircus/android-emulator-runner@v2.14.3
         with:
           api-level: 29
           script: ./gradlew connectedCheck
