@@ -33,6 +33,17 @@ afterEvaluate {
                 version = publishProperties["lib_version"]
             }
         }
+        repositories {
+            maven {
+                name = "GitHubPackages"
+
+                url = uri("https://maven.pkg.github.com/RedMadRobot/PINkman")
+                credentials {
+                    username = System.getenv("GITHUB_USER")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
     }
 }
 
