@@ -3,6 +3,7 @@
 # PINkman
 [![API](https://img.shields.io/badge/API-23%2B-red.svg?style=flat)](https://android-arsenal.com/api?level=23)
 ![CI](https://github.com/RedMadRobot/PINkman/workflows/CI/badge.svg)
+![Maven Central](https://img.shields.io/maven-central/v/com.redmadrobot/pinkman)
 
 
 Implementing an authentication by a PIN code is an ordinary task for a

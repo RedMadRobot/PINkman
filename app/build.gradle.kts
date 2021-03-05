@@ -8,8 +8,6 @@ plugins {
     id(Dependencies.App.hiltAppPlugin)
 }
 
-
-
 android {
     compileSdkVersion(Android.compileSdk)
     buildToolsVersion(Android.buildTools)
@@ -51,6 +49,7 @@ android {
         }
     }
 }
+
 dependencies {
     implementation(project(":pinkman"))
     implementation(project(":pinkman-ui"))
