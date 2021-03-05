@@ -2,6 +2,7 @@ package com.redmadrobot.pinkman_ui
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.MotionEvent
@@ -14,6 +15,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
 import androidx.annotation.StyleRes
 import androidx.core.content.res.ResourcesCompat
+import com.redmadrobot.pinkman_ui.internal.requireDrawable
 import kotlin.properties.Delegates
 
 @SuppressWarnings("MagicNumber")
@@ -106,6 +108,10 @@ class PinKeyboard @JvmOverloads constructor(
     }
 
     fun setLeftCustomButton(@DrawableRes drawable: Int, action: () -> Unit) {
+        setLeftCustomButton(requireDrawable(drawable), action)
+    }
+
+    fun setLeftCustomButton(drawable: Drawable, action: () -> Unit) {
         val leftCustomButton = createButton(drawable, leftCustomButtonBackground, action)
         leftCustomButtonContainer.removeAllViews()
         leftCustomButtonContainer.addView(
@@ -116,6 +122,10 @@ class PinKeyboard @JvmOverloads constructor(
     }
 
     fun setRightCustomButton(@DrawableRes drawable: Int, action: () -> Unit) {
+        setRightCustomButton(requireDrawable(drawable), action)
+    }
+
+    fun setRightCustomButton(drawable: Drawable, action: () -> Unit) {
         val rightCustomButton = createButton(drawable, rightCustomButtonBackground, action)
         rightCustomButtonContainer.removeAllViews()
         rightCustomButtonContainer.addView(
@@ -196,10 +206,10 @@ class PinKeyboard @JvmOverloads constructor(
         }
     }
 
-    private fun createButton(@DrawableRes drawable: Int, @DrawableRes buttonBackground: Int, action: () -> Unit): View {
+    private fun createButton(drawable: Drawable, @DrawableRes buttonBackground: Int, action: () -> Unit): View {
         return ImageView(context).apply {
             scaleType = ImageView.ScaleType.CENTER
-            setImageResource(drawable)
+            setImageDrawable(drawable)
             if (buttonBackground != -1) setBackgroundResource(buttonBackground)
             setOnClickListener { action.invoke() }
         }
