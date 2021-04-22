@@ -2,7 +2,7 @@ import java.io.File
 import java.util.*
 
 object Android {
-    private const val pluginVersion = "4.1.2"
+    private const val pluginVersion = "4.1.3"
 
     const val compileSdk = 30
     const val buildTools = "30.0.1"

@@ -1,11 +1,11 @@
 object GradlePlugin {
     object DependencyCheck {
-        const val version = "6.0.5"
+        const val version = "6.1.5"
         const val plugin = "org.owasp.dependencycheck"
     }
 
     object DependencyVersions {
-        const val version = "0.36.0"
+        const val version = "0.38.0"
         const val plugin = "com.github.ben-manes.versions"
     }
 
