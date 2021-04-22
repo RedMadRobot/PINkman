@@ -53,7 +53,7 @@ class PublishPlugin : Plugin<Project> {
 
             publications {
                 create("release", MavenPublication::class.java) {
-                    from(project.components.findByName("android"))
+                    from(project.components.findByName("release"))
 
                     artifact(sourcesJar)
 
