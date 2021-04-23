@@ -86,7 +86,7 @@ class PinKeyboard @JvmOverloads constructor(
     }
 
     fun setLeftCustomButton(label: String, textAppearance: Int, action: () -> Unit) {
-        val leftCustomButton = createButton(label, leftCustomButtonBackground, textAppearance, action)
+        val leftCustomButton = createButton(label, textAppearance, leftCustomButtonBackground, action)
         leftCustomButtonContainer.removeAllViews()
         leftCustomButtonContainer.addView(
             leftCustomButton,
