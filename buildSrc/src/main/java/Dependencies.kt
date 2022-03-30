@@ -9,10 +9,10 @@ object Dependencies {
 
     object Lib {
         private object Versions {
-            const val securityCrypto = "1.0.0-rc04"
+            const val securityCrypto = "1.0.0"
             const val argon2 = "1.3.0"
             const val coroutines = "1.4.2"
-            const val rxJava3 = "3.0.9"
+            const val rxJava3 = "3.1.4"
         }
 
         const val securityCrypto = "androidx.security:security-crypto:${Versions.securityCrypto}"
