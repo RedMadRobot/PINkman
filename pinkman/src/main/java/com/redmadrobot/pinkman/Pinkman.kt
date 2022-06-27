@@ -149,6 +149,8 @@ class Pinkman(
         }
     }
 
+    data class Config(val useStrongBoxIfPossible: Boolean = true)
+
     companion object {
         private const val TAG = "PINkman"
 
