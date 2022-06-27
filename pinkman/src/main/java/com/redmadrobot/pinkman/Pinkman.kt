@@ -1,5 +1,6 @@
 package com.redmadrobot.pinkman
 
+import android.app.KeyguardManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
@@ -35,7 +36,9 @@ class Pinkman(
             .setKeySize(KEY_SIZE)
             .apply {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    setUnlockedDeviceRequired(true)
+                    val isDeviceSecure = isDeviceSecure()
+
+                    setUnlockedDeviceRequired(isDeviceSecure)
 
                     val hasStrongBox = applicationContext
                         .packageManager
@@ -52,6 +55,13 @@ class Pinkman(
             MasterKeys.getOrCreate(keySpec),
             EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB
         ).setKeysetAlias(KEYSET_ALIAS).setKeysetPrefName(PREFERENCE_FILE).build()
+    }
+
+    private fun isDeviceSecure(): Boolean {
+        val keyguardManager = applicationContext
+            .getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+
+        return keyguardManager.isDeviceSecure
     }
 
     @Throws(BlacklistedPinException::class)
