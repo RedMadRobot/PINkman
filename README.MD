@@ -88,6 +88,16 @@ class InputPinViewModel(private val pinkman: Pinkman) : ViewModel() {
 }
 ```
 
+Pinkman uses [StrongBox](https://developer.android.com/training/articles/keystore#HardwareSecurityModule) by default. 
+If you want to turn it off you can do it in `Pinkman.Config` class.
+
+```kotlin
+val pinkman = Pinkman(
+    application.applicationContext,
+    config = Pinkman.Config(useStrongBoxIfPossible = false)
+)
+```
+
 Also you can do all these things even sipmler with the UI components
 (`PinView` and `PinKeyboard`) supplied by this library. You need to add
 this dependency to use them
