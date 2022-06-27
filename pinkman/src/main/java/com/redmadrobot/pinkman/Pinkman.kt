@@ -22,6 +22,7 @@ import java.security.GeneralSecurityException
 
 class Pinkman(
     private val applicationContext: Context,
+    private val config: Config = Config(),
     private val storageName: String = "pinkman",
     private val pinBlacklist: List<String>? = null
 ) {
@@ -40,11 +41,13 @@ class Pinkman(
 
                     setUnlockedDeviceRequired(isDeviceSecure)
 
-                    val hasStrongBox = applicationContext
-                        .packageManager
-                        .hasSystemFeature(PackageManager.FEATURE_STRONGBOX_KEYSTORE)
+                    if (config.useStrongBoxIfPossible) {
+                        val hasStrongBox = applicationContext
+                            .packageManager
+                            .hasSystemFeature(PackageManager.FEATURE_STRONGBOX_KEYSTORE)
 
-                    setIsStrongBoxBacked(hasStrongBox)
+                        setIsStrongBoxBacked(hasStrongBox)
+                    }
                 }
             }.build()
 
