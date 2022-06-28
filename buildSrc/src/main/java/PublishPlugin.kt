@@ -19,7 +19,7 @@ class PublishPlugin : Plugin<Project> {
     private val publishProperties by lazy {
 
         Properties().apply {
-            load(File("gradle/publish.properties").inputStream())
+            load(File("${projectDir}/../gradle/publish.properties").inputStream())
         }
     }
 
