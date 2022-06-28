@@ -43,7 +43,8 @@ subprojects {
         config = rootProject.files("detekt/config.yml")
         baseline = rootProject.file("detekt/detekt-baseline.xml")
 
-        failFast = true
+        buildUponDefaultConfig = true
+        allRules = true
         autoCorrect = true
         parallel = true
 

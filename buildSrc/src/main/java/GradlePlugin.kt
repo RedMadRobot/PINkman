@@ -10,7 +10,7 @@ object GradlePlugin {
     }
 
     object Detekt {
-        const val version = "1.15.0"
+        const val version = "1.17.1"
         const val plugin = "io.gitlab.arturbosch.detekt"
 
         const val formattingPlugin = "io.gitlab.arturbosch.detekt:detekt-formatting:$version"
