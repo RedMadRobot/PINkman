@@ -1,7 +1,6 @@
 plugins {
     id(Android.libraryPlugin)
     kotlin(Kotlin.androidPlugin)
-    kotlin(Kotlin.androidExtensions)
     id("publishPlugin")
 }
 

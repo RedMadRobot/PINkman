@@ -6,7 +6,7 @@ group = "com.redmadrobot.build"
 
 repositories {
     google()
-    jcenter()
+    mavenCentral()
 }
 
 gradlePlugin {
