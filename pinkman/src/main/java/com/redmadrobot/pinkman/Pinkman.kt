@@ -11,6 +11,7 @@ import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
 import com.lambdapioneer.argon2kt.Argon2Exception
 import com.redmadrobot.pinkman.exception.BlacklistedPinException
+import com.redmadrobot.pinkman.exception.CorruptedStorageException
 import com.redmadrobot.pinkman.internal.Salt
 import com.redmadrobot.pinkman.internal.argon2.Argon2
 import com.redmadrobot.pinkman.internal.exception.BadHashException
@@ -37,7 +38,12 @@ class Pinkman(
             .setKeySize(KEY_SIZE)
             .apply {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    val isDeviceSecure = isDeviceSecure()
+                    //FIXME: Dirty workaround. Waiting for a fix https://issuetracker.google.com/issues/191391068?pli=1
+                    val isDeviceSecure = if (Build.VERSION.SDK_INT == 31) {
+                        false
+                    } else {
+                        isDeviceSecure()
+                    }
 
                     setUnlockedDeviceRequired(isDeviceSecure)
 
@@ -52,12 +58,17 @@ class Pinkman(
             }.build()
 
     private val encryptedStorage by lazy {
-        EncryptedFile.Builder(
-            storageFile,
-            applicationContext,
-            MasterKeys.getOrCreate(keySpec),
-            EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB
-        ).setKeysetAlias(KEYSET_ALIAS).setKeysetPrefName(PREFERENCE_FILE).build()
+        try {
+            EncryptedFile.Builder(
+                storageFile,
+                applicationContext,
+                MasterKeys.getOrCreate(keySpec),
+                EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB
+            ).setKeysetAlias(KEYSET_ALIAS).setKeysetPrefName(PREFERENCE_FILE).build()
+        } catch (e: Exception) {
+            //FIXME: Dirty workaround. Waiting for a fix https://issuetracker.google.com/issues/191391068?pli=1
+            throw CorruptedStorageException("Pinkman storage was corrupted. Please, remove existing PIN and create it again.")
+        }
     }
 
     private fun isDeviceSecure(): Boolean {
