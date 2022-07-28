@@ -31,6 +31,7 @@ class Pinkman(
         File(applicationContext.filesDir, storageName)
     }
 
+    @Suppress("CommentSpacing", "ForbiddenComment", "MagicNumber")
     private val keySpec =
         KeyGenParameterSpec.Builder(KEYSTORE_ALIAS, PURPOSE_ENCRYPT or PURPOSE_DECRYPT)
             .setBlockModes(BLOCK_MODE_GCM)
@@ -38,7 +39,7 @@ class Pinkman(
             .setKeySize(KEY_SIZE)
             .apply {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    //FIXME: Dirty workaround. Waiting for a fix https://issuetracker.google.com/issues/191391068?pli=1
+                    // FIXME: Dirty workaround. Waiting for a fix https://issuetracker.google.com/issues/191391068?pli=1
                     val isDeviceSecure = if (Build.VERSION.SDK_INT == 31) {
                         false
                     } else {
@@ -57,6 +58,7 @@ class Pinkman(
                 }
             }.build()
 
+    @Suppress("TooGenericExceptionCaught", "SwallowedException", "CommentSpacing", "MaxLineLength", "ForbiddenComment")
     private val encryptedStorage by lazy {
         try {
             EncryptedFile.Builder(
@@ -66,7 +68,7 @@ class Pinkman(
                 EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB
             ).setKeysetAlias(KEYSET_ALIAS).setKeysetPrefName(PREFERENCE_FILE).build()
         } catch (e: Exception) {
-            //FIXME: Dirty workaround. Waiting for a fix https://issuetracker.google.com/issues/191391068?pli=1
+            // FIXME: Dirty workaround. Waiting for a fix https://issuetracker.google.com/issues/191391068?pli=1
             throw CorruptedStorageException("Pinkman storage was corrupted. Please, remove existing PIN and create it again.")
         }
     }
