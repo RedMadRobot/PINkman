@@ -40,7 +40,7 @@ class Pinkman(
             .apply {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     // FIXME: Dirty workaround. Waiting for a fix https://issuetracker.google.com/issues/191391068?pli=1
-                    val isDeviceSecure = if (Build.VERSION.SDK_INT == 31) {
+                    val isDeviceSecure = if (Build.VERSION.SDK_INT >= 31) {
                         false
                     } else {
                         isDeviceSecure()
