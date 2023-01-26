@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion(Android.DefaultConfig.minSdk)
         targetSdkVersion(Android.DefaultConfig.targetSdk)
-        versionCode = Android.DefaultConfig.versionCode
-        versionName = Android.DefaultConfig.versionName
+//        versionCode = Android.DefaultConfig.versionCode
+//        versionName = Android.DefaultConfig.versionName
 
         testInstrumentationRunner = Android.DefaultConfig.instrumentationRunner
 

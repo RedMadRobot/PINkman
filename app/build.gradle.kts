@@ -5,7 +5,8 @@ plugins {
     kotlin(Kotlin.androidExtensions)
     kotlin(Kotlin.kapt)
 
-    id(Dependencies.App.hiltAppPlugin)
+//    id(Dependencies.App.hiltAppPlugin)
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -58,7 +59,7 @@ dependencies {
     implementation(Dependencies.Common.appCompat)
 
     implementation(Dependencies.App.hiltAndroid)
-    implementation(Dependencies.App.hiltLifecycleViewmodel)
+//    implementation(Dependencies.App.hiltLifecycleViewmodel)
 
     implementation(Dependencies.App.navigationFragmentKtx)
     implementation(Dependencies.App.navigationUiKtx)
@@ -69,8 +70,9 @@ dependencies {
     implementation(Dependencies.App.coreKtx)
     implementation(Dependencies.App.constraintlayout)
 
-    kapt(Dependencies.App.hiltCompiler)
-    kapt(Dependencies.App.hiltAndroidCompiler)
+//    kapt(Dependencies.App.hiltCompiler)
+//    kapt(Dependencies.App.hiltAndroidCompiler)
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     testImplementation(TestDependencies.junit)
 

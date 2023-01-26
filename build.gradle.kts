@@ -6,7 +6,7 @@ buildscript {
     }
 
     dependencies {
-        classpath(Android.gradlePlugin)
+//        classpath(Android.gradlePlugin)
         classpath(Kotlin.gradlePlugin)
 
         classpath(GradlePlugin.Bintray.gradlePlugin)
@@ -19,6 +19,7 @@ plugins {
     id(GradlePlugin.Detekt.plugin) version GradlePlugin.Detekt.version
     id(GradlePlugin.DependencyVersions.plugin) version GradlePlugin.DependencyVersions.version
     id(GradlePlugin.DependencyCheck.plugin) version GradlePlugin.DependencyCheck.version
+        id("com.google.dagger.hilt.android") version "2.44" apply false
 }
 
 

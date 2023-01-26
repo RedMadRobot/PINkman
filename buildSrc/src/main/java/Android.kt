@@ -4,8 +4,8 @@ import java.util.*
 object Android {
     private const val pluginVersion = "4.1.3"
 
-    const val compileSdk = 30
-    const val buildTools = "30.0.1"
+    const val compileSdk = 33
+    const val buildTools = "33.0.1"
 
     const val gradlePlugin = "com.android.tools.build:gradle:$pluginVersion"
     const val applicationPlugin = "com.android.application"

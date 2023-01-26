@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.redmadrobot.sample.MainFragment"
-        android:label="MainFragment" >
+        android:label="MainFragment">
         <action
             android:id="@+id/action_mainFragment_to_createPinFragment"
             app:destination="@id/createPinFragment" />
@@ -22,4 +22,8 @@
             android:id="@+id/action_mainFragment_to_inputPinFragment"
             app:destination="@id/inputPinFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.redmadrobot.sample.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

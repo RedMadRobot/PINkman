@@ -23,13 +23,13 @@ object Dependencies {
 
     object App {
         private object Versions {
-            const val daggerVersion = "2.30.1-alpha"
+            const val daggerVersion = "2.44"
             const val hiltLifecycleViewmodel = "1.0.0-alpha01"
 
-            const val navigationFragmentKtx = "2.3.0-rc01"
-            const val navigationUiKtx = "2.3.0-rc01"
+            const val navigationFragmentKtx = "2.6.0-alpha04"
+            const val navigationUiKtx = "2.6.0-alpha04"
 
-            const val lifecycleViewmodelKtx = "2.2.0"
+            const val lifecycleViewmodelKtx = "2.5.1"
             const val lifecycleLivedataKtx = "2.2.0"
 
             const val coreKtx = "1.3.0"
