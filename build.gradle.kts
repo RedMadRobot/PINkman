@@ -8,9 +8,6 @@ buildscript {
     dependencies {
         classpath(Android.gradlePlugin)
         classpath(Kotlin.gradlePlugin)
-
-        classpath(GradlePlugin.Bintray.gradlePlugin)
-
         classpath(Dependencies.App.hiltGradlePlugin)
     }
 }
@@ -33,12 +30,6 @@ allprojects {
 subprojects {
     apply(plugin = GradlePlugin.Detekt.plugin)
 
-    tasks {
-        withType<io.gitlab.arturbosch.detekt.Detekt> {
-            this.jvmTarget = "1.8"
-        }
-    }
-
     detekt {
         config = rootProject.files("detekt/config.yml")
         baseline = rootProject.file("detekt/detekt-baseline.xml")
@@ -55,10 +46,9 @@ subprojects {
 
     dependencies {
         detektPlugins(GradlePlugin.Detekt.formattingPlugin)
-
     }
 }
 
 tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }

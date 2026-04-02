@@ -15,9 +15,4 @@ object GradlePlugin {
 
         const val formattingPlugin = "io.gitlab.arturbosch.detekt:detekt-formatting:$version"
     }
-
-    object Bintray {
-        const val gradlePlugin = "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
-    }
-
 }

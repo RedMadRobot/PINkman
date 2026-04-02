@@ -1,17 +1,28 @@
 plugins {
     id(Android.libraryPlugin)
-    kotlin(Kotlin.androidPlugin)
+    id(Kotlin.androidPlugin)
+    id("maven-publish")
     id("publishPlugin")
 }
 
 android {
+    namespace = "com.redmadrobot.pinkman_ui"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
     compileSdkVersion(Android.compileSdk)
 
     defaultConfig {
-        minSdkVersion(Android.DefaultConfig.minSdk)
-        targetSdkVersion(Android.DefaultConfig.targetSdk)
-        versionCode = Android.DefaultConfig.versionCode
-        versionName = Android.DefaultConfig.versionName
+        minSdk = Android.DefaultConfig.minSdk
 
         testInstrumentationRunner = Android.DefaultConfig.instrumentationRunner
 
@@ -30,15 +41,6 @@ android {
                 Android.Proguard.projectRules
             )
         }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
 }
 

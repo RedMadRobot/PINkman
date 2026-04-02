@@ -19,5 +19,12 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:4.1.2")
+    implementation("com.android.tools.build:gradle:8.11.1")
+}
+
+configurations.all {
+    resolutionStrategy {
+        // Force the version Hilt needs to run its tasks
+        force("com.squareup:javapoet:1.13.0")
+    }
 }
