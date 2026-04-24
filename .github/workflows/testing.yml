@@ -15,7 +15,7 @@ on:
 jobs:
   testing:
     name: Code quality and testing
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     
     steps:
       - name: Clone repository
