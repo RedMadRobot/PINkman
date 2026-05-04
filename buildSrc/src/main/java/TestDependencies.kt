@@ -1,7 +1,7 @@
 object TestDependencies {
     private object Versions {
         const val junit = "4.13"
-        const val junitExt = "1.1.2"
+        const val junitExt = "1.1.3"
         const val espresso = "3.3.0"
         const val assertjCore = "3.18.1"
         const val mockitoCore = "3.6.28"

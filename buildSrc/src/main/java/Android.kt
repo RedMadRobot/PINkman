@@ -2,10 +2,10 @@ import java.io.File
 import java.util.*
 
 object Android {
-    private const val pluginVersion = "4.1.3"
+    private const val pluginVersion = "8.11.1"
 
-    const val compileSdk = 30
-    const val buildTools = "30.0.1"
+    const val compileSdk = 36
+    const val buildTools = "36.0.0"
 
     const val gradlePlugin = "com.android.tools.build:gradle:$pluginVersion"
     const val applicationPlugin = "com.android.application"
@@ -13,7 +13,7 @@ object Android {
 
     object DefaultConfig {
         const val minSdk = 23
-        const val targetSdk = 30
+        const val targetSdk = 36
 
         const val applicationId = "com.redmadrobot.pinkman_sample"
 

@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.redmadrobot.pinkman.Pinkman
+import com.redmadrobot.sample.databinding.MainFragmentBinding
+import com.redmadrobot.sample.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -17,6 +18,8 @@ class MainFragment : Fragment() {
 
     @Inject
     lateinit var pinkman: Pinkman
+
+    private val viewBinding by viewBinding(MainFragmentBinding::bind)
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -34,22 +37,22 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(viewBinding) {
         super.onViewCreated(view, savedInstanceState)
 
         if (pinkman.isPinSet()) {
-            pin_button.text = "Remove PIN"
-            pin_button.setOnClickListener {
+            pinButton.text = "Remove PIN"
+            pinButton.setOnClickListener {
                 pinkman.removePin()
 
                 parentFragmentManager.beginTransaction()
-                    .detach(this)
-                    .attach(this)
+                    .detach(this@MainFragment)
+                    .attach(this@MainFragment)
                     .commit()
             }
         } else {
-            pin_button.text = "Create PIN"
-            pin_button.setOnClickListener { findNavController().navigate(R.id.createPinFragment) }
+            pinButton.text = "Create PIN"
+            pinButton.setOnClickListener { findNavController().navigate(R.id.createPinFragment) }
         }
     }
 }

@@ -1,11 +1,13 @@
 package com.redmadrobot.sample.input_pin
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.redmadrobot.pinkman.Pinkman
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class InputPinViewModel @ViewModelInject constructor(private val pinkman: Pinkman) : ViewModel() {
+@HiltViewModel
+class InputPinViewModel @Inject constructor(private val pinkman: Pinkman) : ViewModel() {
 
     val pinIsValid = MutableLiveData<Boolean>()
 

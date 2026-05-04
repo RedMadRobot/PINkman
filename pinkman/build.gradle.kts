@@ -1,17 +1,28 @@
 plugins {
     id(Android.libraryPlugin)
-    kotlin(Kotlin.androidPlugin)
+    id(Kotlin.androidPlugin)
+    id("maven-publish")
     id("publishPlugin")
 }
 
 android {
+    namespace = "com.redmadrobot.pinkman"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
     compileSdkVersion(Android.compileSdk)
 
     defaultConfig {
-        minSdkVersion(Android.DefaultConfig.minSdk)
-        targetSdkVersion(Android.DefaultConfig.targetSdk)
-        versionCode = Android.DefaultConfig.versionCode
-        versionName = Android.DefaultConfig.versionName
+        minSdk = Android.DefaultConfig.minSdk
 
         testInstrumentationRunner = Android.DefaultConfig.instrumentationRunner
 
@@ -32,17 +43,10 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
-    packagingOptions {
-        exclude("META-INF/LICENSE*")
+    packaging {
+        resources {
+            excludes += setOf("META-INF/LICENSE*")
+        }
     }
 }
 

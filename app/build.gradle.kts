@@ -1,22 +1,42 @@
 plugins {
     id(Android.applicationPlugin)
 
-    kotlin(Kotlin.androidPlugin)
-    kotlin(Kotlin.androidExtensions)
-    kotlin(Kotlin.kapt)
+    id(Kotlin.androidPlugin)
+    id(Kotlin.kapt)
 
     id(Dependencies.App.hiltAppPlugin)
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 android {
+    namespace = "com.redmadrobot.sample"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
     compileSdkVersion(Android.compileSdk)
     buildToolsVersion(Android.buildTools)
 
     defaultConfig {
         applicationId = Android.DefaultConfig.applicationId
 
-        minSdkVersion(Android.DefaultConfig.minSdk)
-        targetSdkVersion(Android.DefaultConfig.targetSdk)
+        minSdk = Android.DefaultConfig.minSdk
+        targetSdk = Android.DefaultConfig.targetSdk
 
         versionCode = Android.DefaultConfig.versionCode
         versionName = Android.DefaultConfig.versionName
@@ -34,19 +54,6 @@ android {
                 )
             }
         }
-
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
-        }
-
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-
-        kapt {
-            correctErrorTypes = true
-        }
     }
 }
 
@@ -58,7 +65,7 @@ dependencies {
     implementation(Dependencies.Common.appCompat)
 
     implementation(Dependencies.App.hiltAndroid)
-    implementation(Dependencies.App.hiltLifecycleViewmodel)
+    kapt(Dependencies.App.hiltAndroidCompiler)
 
     implementation(Dependencies.App.navigationFragmentKtx)
     implementation(Dependencies.App.navigationUiKtx)
@@ -69,12 +76,8 @@ dependencies {
     implementation(Dependencies.App.coreKtx)
     implementation(Dependencies.App.constraintlayout)
 
-    kapt(Dependencies.App.hiltCompiler)
-    kapt(Dependencies.App.hiltAndroidCompiler)
-
     testImplementation(TestDependencies.junit)
 
     androidTestImplementation(TestDependencies.junitExt)
     androidTestImplementation(TestDependencies.espresso)
 }
-

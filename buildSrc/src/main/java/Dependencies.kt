@@ -1,7 +1,7 @@
 object Dependencies {
     object Common {
         private object Versions {
-            const val appCompat = "1.2.0"
+            const val appCompat = "1.7.0"
         }
 
         const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
@@ -10,7 +10,7 @@ object Dependencies {
     object Lib {
         private object Versions {
             const val securityCrypto = "1.0.0"
-            const val argon2 = "1.3.0"
+            const val argon2 = "1.6.0"
             const val coroutines = "1.4.2"
             const val rxJava3 = "3.1.4"
         }
@@ -23,24 +23,19 @@ object Dependencies {
 
     object App {
         private object Versions {
-            const val daggerVersion = "2.30.1-alpha"
-            const val hiltLifecycleViewmodel = "1.0.0-alpha01"
+            const val hilt = "2.57"
 
-            const val navigationFragmentKtx = "2.3.0-rc01"
-            const val navigationUiKtx = "2.3.0-rc01"
+            const val navigationFragmentKtx = "2.9.7"
+            const val navigationUiKtx = "2.9.7"
 
             const val lifecycleViewmodelKtx = "2.2.0"
             const val lifecycleLivedataKtx = "2.2.0"
 
             const val coreKtx = "1.3.0"
             const val constraintlayout = "1.1.3"
-
-            const val hiltCompiler = "1.0.0-alpha01"
-            const val hiltAndroidCompiler = "2.30.1-alpha"
         }
 
-        const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.daggerVersion}"
-        const val hiltLifecycleViewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltLifecycleViewmodel}"
+        const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
 
         const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigationFragmentKtx}"
         const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigationUiKtx}"
@@ -51,9 +46,8 @@ object Dependencies {
         const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}"
 
-        const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltCompiler}"
-        const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hiltAndroidCompiler}"
+        const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
         const val hiltAppPlugin = "dagger.hilt.android.plugin"
-        const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerVersion}"
+        const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
     }
 }

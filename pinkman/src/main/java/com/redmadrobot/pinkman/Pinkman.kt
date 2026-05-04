@@ -159,7 +159,7 @@ class Pinkman(
         }
     }
 
-    private inline fun checkBlacklisted(pin: String) {
+    private fun checkBlacklisted(pin: String) {
         if (pinBlacklist != null && pinBlacklist.contains(pin)) {
             throw BlacklistedPinException()
         }
