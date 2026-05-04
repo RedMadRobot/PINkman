@@ -1,9 +1,11 @@
 plugins {
-    id(Android.libraryPlugin)
-    id(Kotlin.androidPlugin)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
     id("maven-publish")
-    id("publishPlugin")
+    convention.publishing
 }
+
+description = "PINkman-UI is a library with additional UI components for an authentication by a PIN"
 
 android {
     namespace = "com.redmadrobot.pinkman_ui"
@@ -46,8 +48,8 @@ android {
 
 
 dependencies {
-    implementation(Kotlin.stdLib)
-    implementation(Dependencies.Common.appCompat)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.androidx.appcompat)
 
-    testImplementation(TestDependencies.junit)
+    testImplementation(libs.junit)
 }

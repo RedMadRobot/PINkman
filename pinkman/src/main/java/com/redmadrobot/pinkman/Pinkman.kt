@@ -69,7 +69,7 @@ class Pinkman(
             ).setKeysetAlias(KEYSET_ALIAS).setKeysetPrefName(PREFERENCE_FILE).build()
         } catch (e: Exception) {
             // FIXME: Dirty workaround. Waiting for a fix https://issuetracker.google.com/issues/191391068?pli=1
-            throw CorruptedStorageException("Pinkman storage was corrupted. Please, remove existing PIN and create it again.")
+            throw CorruptedStorageException("Pinkman storage was corrupted")
         }
     }
 
@@ -137,7 +137,7 @@ class Pinkman(
 
     private fun loadHashFromStorage() = encryptedStorage.openFileInput().use { it.readBytes() }
 
-    // TODO: Need to delete this method in the next major release
+    // TODO Need to delete this method in the next major release
     private fun fallbackValidationWithMigration(inputPin: String): Boolean {
         val pbkdf2Key = ObjectInputStream(encryptedStorage.openFileInput()).use {
             it.readObject() as Pbkdf2Key
