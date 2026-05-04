@@ -1,17 +1,22 @@
 package com.redmadrobot.build
 
 import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
 import org.gradle.jvm.tasks.Jar
-import org.gradle.kotlin.dsl.*
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.get
+import org.gradle.kotlin.dsl.getByName
+import org.gradle.kotlin.dsl.provideDelegate
+import org.gradle.kotlin.dsl.register
 import org.gradle.plugins.signing.SigningExtension
 import org.gradle.plugins.signing.SigningPlugin
 import java.io.File
-import java.util.*
+import java.util.Properties
 
 class PublishPlugin : Plugin<Project> {
     lateinit var projectDir: File
@@ -33,6 +38,10 @@ class PublishPlugin : Plugin<Project> {
         projectDir = target.projectDir
 
         with(target) {
+            extensions.getByName<LibraryExtension>("android").publishing {
+                singleVariant("release")
+            }
+
             afterEvaluate {
                 configurePublishing()
                 configureSigning()
