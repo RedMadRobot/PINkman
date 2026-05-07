@@ -1,9 +1,10 @@
 plugins {
-    id(Android.libraryPlugin)
-    id(Kotlin.androidPlugin)
-    id("maven-publish")
-    id("publishPlugin")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    convention.publishing
 }
+
+description = "This artifact adds coroutines support to PINkman"
 
 android {
     namespace = "com.redmadrobot.pinkman_coroutines"
@@ -55,12 +56,12 @@ android {
 
 dependencies {
     api(project(":pinkman"))
-    api(Dependencies.Lib.coroutines)
+    api(libs.kotlinx.coroutines.core)
 
-    implementation(Kotlin.stdLib)
+    implementation(libs.kotlin.stdlib)
 
-    androidTestImplementation(TestDependencies.coroutinesTest)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
 
-    androidTestImplementation(TestDependencies.testRunner)
-    androidTestImplementation(TestDependencies.testRules)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
 }

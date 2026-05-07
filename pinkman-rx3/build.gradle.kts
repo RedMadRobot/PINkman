@@ -1,9 +1,10 @@
 plugins {
-    id(Android.libraryPlugin)
-    id(Kotlin.androidPlugin)
-    id("maven-publish")
-    id("publishPlugin")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    convention.publishing
 }
+
+description = "This artifact adds RxJava3 support to PINkman"
 
 android {
     namespace = "com.redmadrobot.pinkman_rx3"
@@ -55,10 +56,10 @@ android {
 
 dependencies {
     api(project(":pinkman"))
-    api(Dependencies.Lib.rxJava3)
+    api(libs.rxjava3)
 
-    implementation(Kotlin.stdLib)
+    implementation(libs.kotlin.stdlib)
 
-    androidTestImplementation(TestDependencies.testRunner)
-    androidTestImplementation(TestDependencies.testRules)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
 }

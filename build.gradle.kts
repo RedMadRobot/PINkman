@@ -1,23 +1,13 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath(Android.gradlePlugin)
-        classpath(Kotlin.gradlePlugin)
-        classpath(Dependencies.App.hiltGradlePlugin)
-    }
-}
-
 plugins {
-    id(GradlePlugin.Detekt.plugin) version GradlePlugin.Detekt.version
-    id(GradlePlugin.DependencyVersions.plugin) version GradlePlugin.DependencyVersions.version
-    id(GradlePlugin.DependencyCheck.plugin) version GradlePlugin.DependencyCheck.version
+    id("com.android.application") apply false
+    id("com.android.library") apply false
+    id("org.jetbrains.kotlin.android") apply false
+    id("org.jetbrains.kotlin.kapt") apply false
+    alias(libs.plugins.hilt) apply false
+    id("io.gitlab.arturbosch.detekt")
+    alias(libs.plugins.dependency.versions)
+    alias(libs.plugins.dependency.check)
 }
-
 
 allprojects {
     repositories {
@@ -27,8 +17,10 @@ allprojects {
     }
 }
 
+val detektFormatting = libs.detekt.formatting
+
 subprojects {
-    apply(plugin = GradlePlugin.Detekt.plugin)
+    apply(plugin = "io.gitlab.arturbosch.detekt")
 
     detekt {
         config = rootProject.files("detekt/config.yml")
@@ -45,7 +37,7 @@ subprojects {
     }
 
     dependencies {
-        detektPlugins(GradlePlugin.Detekt.formattingPlugin)
+        detektPlugins(detektFormatting)
     }
 }
 

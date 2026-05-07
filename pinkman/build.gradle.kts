@@ -1,9 +1,11 @@
 plugins {
-    id(Android.libraryPlugin)
-    id(Kotlin.androidPlugin)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
     id("maven-publish")
-    id("publishPlugin")
+    convention.publishing
 }
+
+description = "PINkman is a library to help implementing an authentication by a PIN code in a secure manner"
 
 android {
     namespace = "com.redmadrobot.pinkman"
@@ -51,15 +53,15 @@ android {
 }
 
 dependencies {
-    implementation(Kotlin.stdLib)
-    implementation(Dependencies.Lib.securityCrypto)
-    implementation(Dependencies.Lib.argon2)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.androidx.security.crypto)
+    implementation(libs.argon2kt)
 
-    testImplementation(TestDependencies.junit)
-    testImplementation(TestDependencies.assertjCore)
-    testImplementation(TestDependencies.mockitoCore)
-    testImplementation(TestDependencies.mockitoKotlin)
+    testImplementation(libs.junit)
+    testImplementation(libs.assertj.core)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
 
-    androidTestImplementation(TestDependencies.testRunner)
-    androidTestImplementation(TestDependencies.testRules)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
 }

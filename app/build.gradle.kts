@@ -1,10 +1,8 @@
 plugins {
-    id(Android.applicationPlugin)
-
-    id(Kotlin.androidPlugin)
-    id(Kotlin.kapt)
-
-    id(Dependencies.App.hiltAppPlugin)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.hilt)
 }
 
 kapt {
@@ -38,9 +36,6 @@ android {
         minSdk = Android.DefaultConfig.minSdk
         targetSdk = Android.DefaultConfig.targetSdk
 
-        versionCode = Android.DefaultConfig.versionCode
-        versionName = Android.DefaultConfig.versionName
-
         testInstrumentationRunner = Android.DefaultConfig.instrumentationRunner
 
 
@@ -61,23 +56,23 @@ dependencies {
     implementation(project(":pinkman"))
     implementation(project(":pinkman-ui"))
 
-    implementation(Kotlin.stdLib)
-    implementation(Dependencies.Common.appCompat)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.androidx.appcompat)
 
-    implementation(Dependencies.App.hiltAndroid)
-    kapt(Dependencies.App.hiltAndroidCompiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
-    implementation(Dependencies.App.navigationFragmentKtx)
-    implementation(Dependencies.App.navigationUiKtx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
-    implementation(Dependencies.App.lifecycleViewmodelKtx)
-    implementation(Dependencies.App.lifecycleLivedataKtx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
 
-    implementation(Dependencies.App.coreKtx)
-    implementation(Dependencies.App.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.constraintlayout)
 
-    testImplementation(TestDependencies.junit)
+    testImplementation(libs.junit)
 
-    androidTestImplementation(TestDependencies.junitExt)
-    androidTestImplementation(TestDependencies.espresso)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espresso.core)
 }
